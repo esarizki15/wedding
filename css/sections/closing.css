@@ -1,7 +1,6 @@
 /* Penutup — "matahari terbenam".
    Latar pink; bunga blush raksasa naik dari bawah, berputar pelan, lalu pelan-pelan
-   terbenam, kemudian siklus diulang. Hashtag diam di atas pusat bunga.
-   --sun-t: 0 = naik penuh, 0.6 = hilang di bawah layar (satuan: lebar bunga). */
+   terbenam, kemudian siklus diulang.    --sun-t: 0 = naik penuh, 0.6 = hilang di bawah layar (satuan: lebar bunga). */
 
 @property --sun-t { syntax: "<number>"; inherits: true; initial-value: 0.6; }
 
@@ -13,7 +12,7 @@
   height: var(--frame-h);
   align-content: start;
   padding-top: clamp(1.75rem, 4.4svh, 2.5rem);
-  background: var(--color-accent);
+  background: var(--color-closing);
   color: var(--color-ink-strong);
   text-align: center;
   justify-items: center;
@@ -42,12 +41,8 @@
 }
 .closing__flower svg { width: 100%; height: 100%; }
 
-.closing__tag {
-  position: absolute; left: 0; right: 0; z-index: 1; margin: 0;
-  bottom: calc(var(--flower-w) * 0.05 + 1.5rem);
-  font-size: .75rem; font-weight: 700; letter-spacing: .08em; text-align: center;
-  color: var(--color-ink-strong); pointer-events: none;
-}
+/* Hashtag di alur teks, di bawah nama — tidak menimpa bunga. */
+.closing__tag { position: relative; z-index: 1; margin: 0; font-size: var(--fs-sm); font-weight: 700; letter-spacing: .12em; }
 
 @media (prefers-reduced-motion: reduce) {
   .closing, .closing.is-active { --sun-t: 0; animation: none; }

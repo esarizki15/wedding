@@ -123,18 +123,23 @@ Di *reduce motion*, bunga penutup diam di posisi naik penuh (`--sun-t: 0`).
 
 ## 7c. Tema warna
 
-Kode: `css/tokens.css` (bawaan = pink), `css/themes.css`, `js/theme-boot.js`, `js/modules/theme-picker.js`.
+Kode: `css/tokens.css` (dasar = pink), `css/themes.css`, `js/theme-boot.js`, `js/modules/theme-picker.js`.
 
 | # | Skenario | Hasil yang diharapkan |
 |---|----------|-----------------------|
-| 7c.1 | Link tanpa `?tema=` | Tema bawaan (`DEFAULT_THEME` di `js/theme-boot.js`, saat ini `pink`) |
-| 7c.2 | `?tema=matahari` / `lavender` / `sage` / `pink` | Tema itu dipakai sejak gambar pertama (tanpa kedipan warna) |
+| 7c.1 | Link tanpa `?tema=` | Tema bawaan (`DEFAULT_THEME` di `js/theme-boot.js`, saat ini `romantis`) |
+| 7c.2 | `?tema=matahari` / `lavender` / `sage` / `romantis` / `pink` | Tema itu dipakai sejak gambar pertama (tanpa kedipan warna) |
 | 7c.3 | `?tema=` berisi nama yang tidak dikenal | Diabaikan, tema bawaan dipakai |
 | 7c.4 | `?tema=pilih` | Pemilih tema muncul di atas; klik mengganti warna langsung dan memperbarui `?tema=` di URL agar bisa disalin |
 | 7c.5 | Tamu biasa | Tidak pernah melihat pemilih tema |
 | 7c.6 | Maskot bunga | SVG inline (`<use href="#flower">`) yang warnanya dari token `--flower-*`, jadi ikut tema otomatis |
 | 7c.7 | Bilah browser HP | `meta theme-color` mengikuti warna "kertas" tema |
+| 7c.9 | Tema `romantis` (bawaan) | Font Great Vibes (judul) + Cormorant Infant (isi) dimuat **hanya** saat tema ini aktif; `?tema=pink` dst. tidak memuatnya |
+| 7c.10 | Pindah ke `romantis` lewat pemilih | Font dimuat saat dipilih; pemenggalan baris dihitung ulang setelah font siap (`document.fonts` `loadingdone`) |
+| 7c.11 | Elemen beranimasi dengan bayangan | `clip-path` memakai inset negatif (`-3rem`) supaya bayangan kartu/foto tidak terpotong; berlaku di semua tema |
 | 7c.8 | Foto dummy (`assets/images/*.svg`) | Warnanya tetap (pink); foto asli menggantikannya, jadi tidak ikut tema |
+
+Token bentuk yang bisa ditimpa tema: `--font-display`, `--font-body`, `--border`, `--shadow-hard`, `--shadow-hard-sm`, `--radius`, `--radius-btn`, `--radius-photo`, `--color-closing`, `--color-amp`, `--amp-stroke`.
 
 Syarat kontras tiap tema: `--ink-800` terbaca di atas `--paper-200`, `--ink-950` terbaca di atas `--accent-500` (teks tombol), dan `--paper-200` terbaca di atas `--ink-800`.
 

@@ -29,6 +29,7 @@ h1, h2, h3, p { margin: 0; }
   background: var(--color-accent);
   color: var(--color-ink-strong);
   border: var(--border);
+  border-radius: var(--radius-btn);
   box-shadow: var(--shadow-hard);
   font: inherit; font-weight: 700;
   text-decoration: none; cursor: pointer;
@@ -38,7 +39,7 @@ h1, h2, h3, p { margin: 0; }
 .btn--small { padding: .65rem 1rem; min-height: 2.75rem; font-size: var(--fs-sm); display: inline-flex; align-items: center; justify-content: center; }
 a.btn { text-align: center; }
 
-.card { background: var(--color-paper-soft); border: var(--border); box-shadow: var(--shadow-hard); padding: var(--space-6); display: grid; gap: var(--space-2); }
+.card { background: var(--color-paper-soft); border: var(--border); border-radius: var(--radius); box-shadow: var(--shadow-hard); padding: var(--space-6); display: grid; gap: var(--space-2); }
 
 @media (prefers-reduced-motion: reduce) {
   * { transition-duration: 0ms !important; animation-duration: 0ms !important; scroll-behavior: auto !important; }

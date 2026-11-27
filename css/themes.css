@@ -12,7 +12,7 @@
    atas --accent-500 (teks tombol); --paper-200 terbaca di atas --ink-800.
    ========================================================================== */
 
-/* pink = bawaan (nilainya ada di :root pada tokens.css) */
+/* pink = tema dasar (nilainya ada di :root pada tokens.css). Tema bawaan situs: DEFAULT_THEME di js/theme-boot.js */
 
 html[data-theme="matahari"] {
   --ink-600: #3e5c38; --ink-800: #283f24; --ink-950: #121c10;
@@ -31,6 +31,64 @@ html[data-theme="sage"] {
   --accent-300: #b7d9c2; --accent-500: #7fc29b;
   --paper-200: #d9ecdd; --paper-50: #f3faf5;
 }
+
+/* romantis = gaya B: tulisan sambung (Great Vibes) + serif (Cormorant Infant), bayangan lembut,
+   sudut membulat, pink + emas. Berbeda dari tema lain, tema ini juga mengubah font, bentuk, dan
+   bayangan (lewat token), bukan hanya warna. Font dimuat hanya saat tema ini dipakai (theme-boot.js). */
+html[data-theme="romantis"] {
+  --ink-600: #9a3a62; --ink-800: #831843; --ink-950: #4a0e27;
+  --accent-300: #f9c2d9; --accent-500: #e8c26a;       /* aksen = emas lembut (tombol) */
+  --paper-200: #fdf2f8; --paper-50: #ffffff;
+
+  /* Maskot tetap pink; emas dipakai untuk aksen & garis */
+  --flower-petal: #f06fa8; --flower-petal-2: #f9b8d3; --flower-core: #831843;
+  --flower-light: #fff5f9; --flower-light-2: #fbd5e5;
+  --gold-line: #c9a24d;       /* garis halus (dekoratif) */
+  --gold-deep: #8f5a06;       /* emas tua: lolos kontras 5,3:1 untuk teks/ampersand */
+
+  --color-page: var(--ink-950);
+  --color-closing: #f6a8c7;   /* penutup tetap pink; emas hanya untuk tombol */
+  --color-amp: var(--gold-deep);
+  --amp-stroke: 0px;
+
+  --font-display: "Great Vibes", "Snell Roundhand", cursive;
+  --font-body: "Cormorant Infant", Georgia, "Times New Roman", serif;
+
+  /* Bentuk: garis tipis emas, bayangan lembut, sudut membulat */
+  --border: 1px solid var(--gold-line);
+  --shadow-hard: 0 .6rem 1.6rem color-mix(in srgb, var(--ink-800) 18%, transparent);
+  --shadow-hard-sm: 0 .3rem .8rem color-mix(in srgb, var(--ink-800) 18%, transparent);
+  --radius: 1rem;
+  --radius-btn: 999px;
+  --radius-photo: 12rem 12rem 1rem 1rem;   /* foto berbentuk lengkung */
+}
+
+/* Cormorant bertubuh kecil: besarkan sedikit & tebalkan agar tetap terbaca */
+html[data-theme="romantis"] body { font-size: calc(var(--fs-base) * 1.12); font-weight: 500; font-variant-numeric: lining-nums; }
+html[data-theme="romantis"] .btn { font-weight: 600; letter-spacing: .05em; }
+html[data-theme="romantis"] .eyebrow,
+html[data-theme="romantis"] .hero__date,
+html[data-theme="romantis"] .hero__place { font-weight: 600; }
+
+/* Judul: tulisan sambung. Great Vibes hanya punya bobot 400 dan tampil kecil, jadi diperbesar. */
+html[data-theme="romantis"] :is(.title, .display, .hero__name, .hero__amp, .person__name, .event__title,
+  .cover__guest-name, .closing__names, .quote__title, .timeline h3, .card h3) {
+  font-family: var(--font-display); font-weight: 400; letter-spacing: 0; line-height: 1.05; word-spacing: .18em;
+}
+html[data-theme="romantis"] .title { font-size: calc(var(--fs-xl) * 1.3); }
+html[data-theme="romantis"] .hero__name { font-size: calc(var(--fs-3xl) * 1.2); }
+html[data-theme="romantis"] .hero__amp { font-size: calc(var(--fs-3xl) * 1.1); }
+html[data-theme="romantis"] .person__name { font-size: calc(var(--fs-xl) * 1.3); }
+html[data-theme="romantis"] .event__title { font-size: calc(var(--fs-2xl) * 1.25); }
+html[data-theme="romantis"] .cover__guest-name { font-size: clamp(2.4rem, 12vw, 3.2rem); }
+html[data-theme="romantis"] .closing__names { font-size: calc(var(--fs-2xl) * 1.3); }
+html[data-theme="romantis"] .quote__title { font-size: calc(var(--fs-xl) * 1.25); }
+html[data-theme="romantis"] .timeline h3 { font-size: calc(var(--fs-lg) * 1.25); }
+html[data-theme="romantis"] .card h3 { font-size: calc(var(--fs-md) * 1.25); }
+/* Angka & nomor rekening: serif (tulisan sambung sulit dibaca untuk angka) */
+html[data-theme="romantis"] .countdown span,
+html[data-theme="romantis"] .gift [data-copy-text] { font-family: var(--font-body); font-weight: 600; font-variant-numeric: lining-nums tabular-nums; }
+html[data-theme="romantis"] .quote__verse { font-style: italic; }
 
 /* Pemilih tema (hanya muncul dengan ?tema=pilih) */
 .theme-picker {

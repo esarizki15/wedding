@@ -3,6 +3,6 @@
 .countdown-sec__flower { position: absolute; left: 50%; bottom: -5.5rem; width: 12.25rem; margin-left: -6.125rem; aspect-ratio: 1; z-index: 0; pointer-events: none; }
 .countdown-sec > *:not(.countdown-sec__flower) { position: relative; z-index: 1; }
 .countdown { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-4); text-align: center; }
-.countdown div { background: var(--color-paper-soft); border: var(--border); box-shadow: var(--shadow-hard); padding: var(--space-6) 0; display: grid; }
+.countdown div { background: var(--color-paper-soft); border: var(--border); border-radius: var(--radius); box-shadow: var(--shadow-hard); padding: var(--space-6) 0; display: grid; }
 .countdown span { font-family: var(--font-display); font-size: var(--fs-2xl); font-weight: 700; font-variant-numeric: tabular-nums; line-height: 1; }
 .countdown small { font-size: var(--fs-xs); text-transform: uppercase; letter-spacing: .1em; }

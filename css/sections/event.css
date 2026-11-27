@@ -1,6 +1,6 @@
 /* Mempelai */
 .person { align-content: center; gap: var(--space-4); }
-.person__photo { margin: 0; width: min(100%, 52svh * .75); aspect-ratio: 3 / 4; overflow: hidden; border: var(--border); box-shadow: var(--shadow-hard); background: var(--color-paper-soft); }
+.person__photo { margin: 0; width: min(100%, 52svh * .75); aspect-ratio: 3 / 4; overflow: hidden; border: var(--border); border-radius: var(--radius-photo); box-shadow: var(--shadow-hard); background: var(--color-paper-soft); }
 .person--bride .person__photo { margin-left: auto; }
 .person__photo img { width: 100%; height: 100%; object-fit: cover; }
 .person__name { font-family: var(--font-display); font-size: var(--fs-xl); font-weight: 700; line-height: 1; }

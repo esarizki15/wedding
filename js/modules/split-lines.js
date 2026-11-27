@@ -18,6 +18,8 @@
       };
       build();
       new ResizeObserver(build).observe(el);
+      // Font tema dimuat belakangan → pemenggalan baris harus dihitung ulang setelah font siap.
+      document.fonts?.addEventListener?.('loadingdone', () => { lastWidth = 0; build(); });
     });
   }
 

@@ -24,9 +24,9 @@
 .js [data-anim="stamp"]      { opacity: 0; transform: scale(1.35) rotate(var(--stamp-rotate, -4deg)); }
 .js [data-anim="bloom"]      { opacity: 0; transform: scale(.2) rotate(-180deg); }
 .js [data-anim="stick"]      { opacity: 0; transform: scale(1.2) rotate(var(--tilt, -5deg)); }
-.js [data-anim="wipe"]            { clip-path: inset(0 100% 0 0); }
-.js [data-anim="wipe-from-right"] { clip-path: inset(0 0 0 100%); }
-.js [data-anim="curtain"]         { clip-path: inset(0 0 100% 0); }
+.js [data-anim="wipe"]            { clip-path: inset(-3rem 100% -3rem -3rem); }
+.js [data-anim="wipe-from-right"] { clip-path: inset(-3rem -3rem -3rem 100%); }
+.js [data-anim="curtain"]         { clip-path: inset(-3rem -3rem 100% -3rem); }
 .js [data-anim="zoom-out"]        { transform: scale(1.15); }
 .js [data-anim="pop-shake"]       { opacity: 0; transform: scale(.4); }
 
@@ -34,7 +34,7 @@
 .js .is-active [data-anim] {
   opacity: 1;
   transform: none;
-  clip-path: inset(0 0 0 0);
+  clip-path: inset(-3rem); /* negatif: bayangan elemen tidak terpotong */
   transition-duration: var(--dur, var(--dur-enter));
   transition-timing-function: var(--ease, var(--ease-snap));
   transition-delay: var(--delay, calc(var(--i) * var(--stagger)));

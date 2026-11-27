@@ -1,6 +1,6 @@
 .gallery__item {
   padding: 0; margin: 0; border: var(--border); background: var(--color-paper-soft);
-  cursor: zoom-in; display: block; overflow: hidden;
+  cursor: zoom-in; display: block; overflow: hidden; border-radius: var(--radius);
 }
 .gallery__item img { border: 0; transition: transform var(--dur-slow) var(--ease-snap); }
 .gallery__item:hover img, .gallery__item:focus-visible img { transform: scale(1.06); }
