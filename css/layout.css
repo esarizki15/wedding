@@ -49,4 +49,5 @@
   background: var(--color-accent); color: var(--color-ink-strong);
   font-size: 1.25rem; cursor: pointer;
 }
+.music-toggle { display: grid; place-items: center; padding: 0; }
 .music-toggle.is-playing { animation: spin 4s linear infinite; }

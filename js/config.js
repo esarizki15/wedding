@@ -24,7 +24,7 @@
    * Kiriman form di mode demo hanya tampil di halaman ini (tidak disimpan).
    */
   const DUMMY_WISHES = [
-    { name: 'Dina Anggraini', message: 'Selamat menempuh hidup baru, Esa & Khodi! Semoga sakinah, mawaddah, warahmah. 🌻' },
+    { name: 'Dina Anggraini', message: 'Selamat menempuh hidup baru, Esa & Khodi! Semoga sakinah, mawaddah, warahmah. 🌸' },
     { name: 'Keluarga Besar Wijaya', message: 'Barakallahu lakuma wa baraka alaikuma. Bahagia selalu dan lekas dikaruniai momongan.' },
     { name: 'Bagas Saputra', message: 'Akhirnya! Setelah 5 tahun. Semoga lancar sampai hari H, bro. Sampai ketemu di Sumedang!' },
     { name: 'Maya', message: 'Selamat ya Khodi, cantik banget undangannya. Doa terbaik buat kalian berdua.' },

@@ -21,13 +21,13 @@ html[data-theme="matahari"] {
 }
 
 html[data-theme="lavender"] {
-  --ink-600: #6b5a94; --ink-800: #3b2a5c; --ink-950: #1d1230;
+  --ink-600: #685891; --ink-800: #3b2a5c; --ink-950: #1d1230;
   --accent-300: #cdb8ff; --accent-500: #a98bff;
   --paper-200: #e6dcff; --paper-50: #f7f3ff;
 }
 
 html[data-theme="sage"] {
-  --ink-600: #4f6f5a; --ink-800: #2b4636; --ink-950: #14231b;
+  --ink-600: #4d6c58; --ink-800: #2b4636; --ink-950: #14231b;
   --accent-300: #b7d9c2; --accent-500: #7fc29b;
   --paper-200: #d9ecdd; --paper-50: #f3faf5;
 }

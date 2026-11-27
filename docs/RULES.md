@@ -138,6 +138,20 @@ Kode: `css/tokens.css` (bawaan = pink), `css/themes.css`, `js/theme-boot.js`, `j
 
 Syarat kontras tiap tema: `--ink-800` terbaca di atas `--paper-200`, `--ink-950` terbaca di atas `--accent-500` (teks tombol), dan `--paper-200` terbaca di atas `--ink-800`.
 
+## 7d. Aksesibilitas
+
+Hasil audit dengan skill ui-ux-pro-max; semua poin di bawah sudah diperbaiki dan dites.
+
+| # | Aturan | Hasil yang diharapkan |
+|---|--------|-----------------------|
+| 7d.1 | Kontras teks | Teks apa pun ≥ **4,5:1** terhadap latarnya, di semua tema. `--ink-600` (teks kecil) sengaja lebih gelap agar lolos di atas `--paper-200` dan `--paper-50` |
+| 7d.2 | Fokus keyboard | Semua elemen interaktif punya ring fokus 3px saat memakai Tab (`:focus-visible`); di section gelap warnanya terang |
+| 7d.3 | Target sentuh | Semua tombol/link/area radio ≥ **44×44px** (tombol kecil `min-height: 2.75rem`, label radio 2.75rem, tombol "Geser" 2.75rem) |
+| 7d.4 | Ikon | Memakai SVG (`.icon`, sprite di `index.html`), bukan emoji; warnanya mengikuti teks & tema |
+| 7d.5 | Gerak | `prefers-reduced-motion` mematikan animasi, putaran, dan getar |
+
+Saat menambah tema baru, hitung kontras `--ink-600` terhadap `--paper-200` dan `--paper-50` (≥ 4,5:1) sebelum dipakai.
+
 ## 8. Daftar cek manual sebelum dibagikan
 
 1. Buka dengan `?to=` berisi nama panjang dan karakter khusus; cek cover tidak meluber.

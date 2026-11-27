@@ -24,7 +24,7 @@
 .cover__scroll-hint {
   position: absolute; right: .75rem; bottom: 2.5rem; z-index: 1;
   display: flex; flex-direction: column; align-items: center; gap: .5rem;
-  padding: .5rem .25rem; color: var(--color-ink);
+  padding: .75rem; min-width: 2.75rem; min-height: 2.75rem; color: var(--color-ink);
   background: none; border: 0; font: inherit; cursor: pointer;
 }
 .cover__scroll-text { writing-mode: vertical-rl; font-size: var(--fs-xs); font-weight: 500; letter-spacing: .14em; text-transform: uppercase; line-height: 1; }

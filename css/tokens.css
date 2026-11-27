@@ -3,7 +3,7 @@
    jangan hardcode hex di file lain. */
 :root {
   /* Palet dasar — tema PINK lembut (rose-wine = "tinta", pink = aksen, blush = "kertas") */
-  --ink-600: #9a5a73;
+  --ink-600: #90546c;
   --ink-800: #6b2d47;  /* warna utama teks & latar gelap */
   --ink-950: #3d1527;  /* border, bayangan keras, teks di atas aksen */
   --accent-300: #f8bfd3;
