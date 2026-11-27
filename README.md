@@ -22,6 +22,7 @@ assets/images, audio  foto & musik (saat ini dummy, lihat "Data dummy")
 ```
 
 Aturan dan skenario pengujian lengkap ada di [docs/RULES.md](docs/RULES.md).
+Untuk melanjutkan di mesin/sesi baru: baca [docs/CATATAN-PROYEK.md](docs/CATATAN-PROYEK.md) (keputusan & jebakan) dan [docs/TODO.md](docs/TODO.md) (tugas tersisa).
 
 ## Menjalankan lokal
 
