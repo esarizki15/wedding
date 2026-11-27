@@ -12,6 +12,7 @@ body {
 }
 
 img { display: block; max-width: 100%; height: auto; }
+.flower { display: block; }
 h1, h2, h3, p { margin: 0; }
 [hidden] { display: none !important; }
 

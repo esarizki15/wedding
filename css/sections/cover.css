@@ -11,7 +11,7 @@
 
 .cover__flower { position: absolute; inset: 0; display: grid; place-items: center; pointer-events: none; }
 .cover__flower-bloom { width: var(--flower-size); aspect-ratio: 1; }
-.cover__flower img { width: 100%; height: 100%; }
+.cover__flower svg { width: 100%; height: 100%; }
 
 .cover__guest { position: relative; z-index: 1; display: grid; gap: .75rem; padding-right: 2.75rem; }
 .cover__salutation { font-size: var(--fs-sm); }

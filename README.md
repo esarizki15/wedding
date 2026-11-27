@@ -6,7 +6,9 @@ Situs statis (HTML/CSS/JS vanilla, tanpa build) + Supabase untuk buku tamu.
 
 ```
 index.html            satu halaman, semua section
-css/tokens.css        satu-satunya tempat warna/font/ukuran/motion
+css/tokens.css        warna/font/ukuran/motion (tema bawaan = pink)
+css/themes.css        tema lain: matahari, lavender, sage (+ pemilih tema)
+js/theme-boot.js      daftar tema & tema bawaan (dimuat di <head>)
 css/base.css          reset, tombol, kartu
 css/layout.css        frame 430px, tombol musik
 css/sections/*.css    gaya per section
@@ -58,6 +60,16 @@ Proyek ini sudah berisi data contoh (Esa & Khodi) supaya UI langsung terlihat pe
 
 Elemen `data-only="before"` dihapus setelah `AFTER_FROM`; `data-only="after"` (awalnya
 `hidden`) baru ditampilkan setelahnya. Lihat `js/modules/phase.js`.
+
+## Tema warna
+
+Empat tema tersedia: **pink** (bawaan), **matahari**, **lavender**, **sage**.
+
+- Ganti tema bawaan: ubah `DEFAULT_THEME` di `js/theme-boot.js`.
+- Per link: `?tema=lavender` (bisa digabung dengan nama tamu: `?to=Budi&tema=sage`).
+- Mencoba-coba: buka `?tema=pilih` untuk menampilkan pemilih tema.
+- Tema baru: salin satu blok di `css/themes.css` (hanya 7 warna), lalu daftarkan namanya di
+  `js/theme-boot.js`. Warna maskot bunga ikut otomatis.
 
 ## Animasi
 

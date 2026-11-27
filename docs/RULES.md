@@ -106,7 +106,7 @@ Kode: `css/animations.css`, `js/modules/snap.js`, `reveal.js`, `split-letters.js
 | 7.12 | Tombol `[data-scroll-next]` | Menggulung halus ke section berikutnya (tanpa animasi bila reduce motion) |
 | 7.13 | Tombol "Geser untuk membuka" (`[data-open]`) | Memulai musik dan pindah ke section berikutnya |
 
-### 7b. Perilaku bunga matahari per section
+### 7b. Perilaku bunga (maskot) per section
 
 Tiap section punya perlakuan sendiri (bukan satu animasi yang diulang):
 
@@ -117,9 +117,26 @@ Tiap section punya perlakuan sendiri (bukan satu animasi yang diulang):
 | Countdown | Terpotong di bawah tengah; `rise` 6rem dari bawah + berputar | Muncul terakhir (1400ms) |
 | Kisah | **Sticky** kanan atas di latar gelap; ikut terbawa saat scroll, di belakang teks | Wajib `overflow: clip` di section, bukan `hidden` |
 | Hadiah | **Sticky** kiri atas, terpotong | Konten diberi `padding-top` agar judul tidak tertimpa |
-| Penutup | Bunga lemon raksasa "matahari terbenam": naik 1,4 dtk → terbenam pelan 30 dtk → jeda 3 dtk → ulang; berputar 60 dtk | Variabel `--sun-t` dipakai bunga dan topeng hashtag; hashtag berganti warna di dalam pusat bunga |
+| Penutup | Bunga blush raksasa yang "terbenam" seperti matahari: naik 1,4 dtk → terbenam pelan 30 dtk → jeda 3 dtk → ulang; berputar 60 dtk | Variabel `--sun-t` mengatur posisi bunga|
 
 Di *reduce motion*, bunga penutup diam di posisi naik penuh (`--sun-t: 0`).
+
+## 7c. Tema warna
+
+Kode: `css/tokens.css` (bawaan = pink), `css/themes.css`, `js/theme-boot.js`, `js/modules/theme-picker.js`.
+
+| # | Skenario | Hasil yang diharapkan |
+|---|----------|-----------------------|
+| 7c.1 | Link tanpa `?tema=` | Tema bawaan (`DEFAULT_THEME` di `js/theme-boot.js`, saat ini `pink`) |
+| 7c.2 | `?tema=matahari` / `lavender` / `sage` / `pink` | Tema itu dipakai sejak gambar pertama (tanpa kedipan warna) |
+| 7c.3 | `?tema=` berisi nama yang tidak dikenal | Diabaikan, tema bawaan dipakai |
+| 7c.4 | `?tema=pilih` | Pemilih tema muncul di atas; klik mengganti warna langsung dan memperbarui `?tema=` di URL agar bisa disalin |
+| 7c.5 | Tamu biasa | Tidak pernah melihat pemilih tema |
+| 7c.6 | Maskot bunga | SVG inline (`<use href="#flower">`) yang warnanya dari token `--flower-*`, jadi ikut tema otomatis |
+| 7c.7 | Bilah browser HP | `meta theme-color` mengikuti warna "kertas" tema |
+| 7c.8 | Foto dummy (`assets/images/*.svg`) | Warnanya tetap (pink); foto asli menggantikannya, jadi tidak ikut tema |
+
+Syarat kontras tiap tema: `--ink-800` terbaca di atas `--paper-200`, `--ink-950` terbaca di atas `--accent-500` (teks tombol), dan `--paper-200` terbaca di atas `--ink-800`.
 
 ## 8. Daftar cek manual sebelum dibagikan
 

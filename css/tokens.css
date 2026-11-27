@@ -1,21 +1,33 @@
 /* Satu-satunya tempat untuk warna, font, ukuran, dan motion.
-   Ganti nilai di sini untuk mengubah tema; jangan hardcode hex di file lain. */
+   Nilai di sini = tema bawaan (pink). Tema lain ada di css/themes.css;
+   jangan hardcode hex di file lain. */
 :root {
-  /* Palet dasar — placeholder, ganti sesuai tema */
-  --ink-800: #283f24;
-  --ink-950: #121c10;
-  --accent-500: #ffbf00;
-  --paper-200: #fff78d;
-  --paper-50: #fffde6;
+  /* Palet dasar — tema PINK lembut (rose-wine = "tinta", pink = aksen, blush = "kertas") */
+  --ink-600: #9a5a73;
+  --ink-800: #6b2d47;  /* warna utama teks & latar gelap */
+  --ink-950: #3d1527;  /* border, bayangan keras, teks di atas aksen */
+  --accent-300: #f8bfd3;
+  --accent-500: #f28fb1;  /* tombol, highlight */
+  --paper-200: #fde3ec;   /* latar section */
+  --paper-50: #fff7fa;    /* kartu & input */
 
   /* Peran warna */
-  --color-page: var(--ink-800);
+  --color-page: var(--ink-800);          /* area kiri-kanan di desktop */
   --color-paper: var(--paper-200);
   --color-paper-soft: var(--paper-50);
   --color-accent: var(--accent-500);
+  --color-accent-soft: var(--accent-300);
   --color-ink: var(--ink-800);
   --color-ink-strong: var(--ink-950);
+  --color-ink-soft: var(--ink-600);
   --color-on-ink: var(--paper-200);
+
+  /* Maskot bunga mawar (SVG inline di index.html): warna ikut palet, jadi ikut tema */
+  --flower-petal: var(--accent-500);
+  --flower-petal-2: var(--accent-300);
+  --flower-core: var(--ink-800);
+  --flower-light: var(--paper-50);    /* varian terang untuk latar aksen (penutup) */
+  --flower-light-2: var(--paper-200);
 
   /* Tipografi */
   --font-body: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;

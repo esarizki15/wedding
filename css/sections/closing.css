@@ -1,9 +1,7 @@
 /* Penutup — "matahari terbenam".
-   Latar amber; bunga lemon raksasa naik dari bawah, berputar pelan, lalu pelan-pelan
-   terbenam, kemudian siklus diulang. Hashtag duduk di atas pusat bunga dan warnanya
-   berganti (gelap → terang) saat pusat bunga yang gelap melewatinya.
-   Satu variabel --sun-t (0 = naik penuh, 0.6 = hilang di bawah layar, satuan: lebar
-   bunga) dipakai bunga DAN topeng hashtag, jadi keduanya selalu sinkron. */
+   Latar pink; bunga blush raksasa naik dari bawah, berputar pelan, lalu pelan-pelan
+   terbenam, kemudian siklus diulang. Hashtag diam di atas pusat bunga.
+   --sun-t: 0 = naik penuh, 0.6 = hilang di bawah layar (satuan: lebar bunga). */
 
 @property --sun-t { syntax: "<number>"; inherits: true; initial-value: 0.6; }
 
@@ -31,7 +29,7 @@
   91.28%, 100% { --sun-t: 0.6; }
 }
 
-.closing > p, .closing__names { position: relative; z-index: 1; }
+.closing > p:not(.closing__tag), .closing__names { position: relative; z-index: 1; }
 .closing__names { font-size: var(--fs-2xl); }
 
 .closing__flower {
@@ -42,21 +40,14 @@
   transform: translateY(calc(var(--sun-t) * 100%));
   pointer-events: none;
 }
-.closing__flower img { width: 100%; height: 100%; }
+.closing__flower svg { width: 100%; height: 100%; }
 
-.closing__tags { position: absolute; inset: 0; z-index: 1; pointer-events: none; }
 .closing__tag {
-  position: absolute; left: 0; right: 0; margin: 0;
+  position: absolute; left: 0; right: 0; z-index: 1; margin: 0;
   bottom: calc(var(--flower-w) * 0.05 + 1.5rem);
   font-size: .75rem; font-weight: 700; letter-spacing: .08em; text-align: center;
-  color: var(--color-ink-strong);
+  color: var(--color-ink-strong); pointer-events: none;
 }
-/* Lapisan terang yang hanya tampak di dalam lingkaran gelap pusat bunga (jari-jari = 71.84/320 lebar bunga). */
-.closing__tag-mask {
-  position: absolute; inset: 0;
-  clip-path: circle(calc(var(--flower-w) * 0.2245) at 50% calc(100% + var(--flower-w) * (var(--sun-t) - 0.05)));
-}
-.closing__tag-mask .closing__tag { color: var(--color-paper); }
 
 @media (prefers-reduced-motion: reduce) {
   .closing, .closing.is-active { --sun-t: 0; animation: none; }
