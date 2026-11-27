@@ -1,0 +1,13 @@
+/* Hadiah: bunga STICKY terpotong di kiri atas, tetap di layar selama scroll di section ini. */
+.gift {
+  display: flex; flex-direction: column; gap: 0;
+  overflow: hidden; overflow: clip; /* clip: supaya sticky di dalamnya tetap bekerja */
+  min-height: calc(var(--frame-h) + 20svh);
+  padding: 2rem var(--gutter) calc(2rem + 20svh);
+}
+.gift__sticky { position: sticky; top: 2rem; z-index: 0; height: 0; margin-inline: calc(-1 * var(--gutter)); }
+.gift__flower { position: absolute; top: .54rem; left: -6.2rem; width: 12.25rem; aspect-ratio: 1; }
+.gift__flower img { width: 100%; height: 100%; }
+/* padding-top: judul tidak tertimpa bunga yang menempel di kiri atas. */
+.gift__content { position: relative; z-index: 1; margin-block: auto; padding-top: 5.5rem; display: grid; gap: var(--space-6); }
+.gift [data-copy-text] { font-family: var(--font-display); font-size: var(--fs-lg); font-weight: 700; letter-spacing: .04em; }

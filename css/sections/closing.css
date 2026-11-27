@@ -1,0 +1,63 @@
+/* Penutup — "matahari terbenam".
+   Latar amber; bunga lemon raksasa naik dari bawah, berputar pelan, lalu pelan-pelan
+   terbenam, kemudian siklus diulang. Hashtag duduk di atas pusat bunga dan warnanya
+   berganti (gelap → terang) saat pusat bunga yang gelap melewatinya.
+   Satu variabel --sun-t (0 = naik penuh, 0.6 = hilang di bawah layar, satuan: lebar
+   bunga) dipakai bunga DAN topeng hashtag, jadi keduanya selalu sinkron. */
+
+@property --sun-t { syntax: "<number>"; inherits: true; initial-value: 0.6; }
+
+.closing {
+  --frame-w: min(100vw, var(--frame-max));
+  --flower-w: min(30rem, var(--frame-w) * 1.16, 52svh);
+  --sun-t: 0.6;
+
+  height: var(--frame-h);
+  align-content: start;
+  padding-top: clamp(1.75rem, 4.4svh, 2.5rem);
+  background: var(--color-accent);
+  color: var(--color-ink-strong);
+  text-align: center;
+  justify-items: center;
+  transition: --sun-t var(--dur-exit) var(--ease-snap);
+}
+@media (max-height: 43.75rem) { .closing { --flower-w: min(30rem, var(--frame-w) * 1.16, 46svh); } }
+
+/* Siklus 34,4 dtk: naik 1,4 dtk → terbenam pelan 30 dtk → hilang & jeda 3 dtk → ulang. */
+.closing.is-active { animation: closing-sunset 34.4s infinite; }
+@keyframes closing-sunset {
+  0%      { --sun-t: 0.6; animation-timing-function: var(--ease-cinematic); }
+  4.07%   { --sun-t: 0;   animation-timing-function: cubic-bezier(0.45, 0, 0.55, 1); }
+  91.28%, 100% { --sun-t: 0.6; }
+}
+
+.closing > p, .closing__names { position: relative; z-index: 1; }
+.closing__names { font-size: var(--fs-2xl); }
+
+.closing__flower {
+  position: absolute; left: 50%;
+  bottom: calc(var(--flower-w) * -0.45);
+  width: var(--flower-w); aspect-ratio: 1;
+  margin-left: calc(var(--flower-w) / -2);
+  transform: translateY(calc(var(--sun-t) * 100%));
+  pointer-events: none;
+}
+.closing__flower img { width: 100%; height: 100%; }
+
+.closing__tags { position: absolute; inset: 0; z-index: 1; pointer-events: none; }
+.closing__tag {
+  position: absolute; left: 0; right: 0; margin: 0;
+  bottom: calc(var(--flower-w) * 0.05 + 1.5rem);
+  font-size: .75rem; font-weight: 700; letter-spacing: .08em; text-align: center;
+  color: var(--color-ink-strong);
+}
+/* Lapisan terang yang hanya tampak di dalam lingkaran gelap pusat bunga (jari-jari = 71.84/320 lebar bunga). */
+.closing__tag-mask {
+  position: absolute; inset: 0;
+  clip-path: circle(calc(var(--flower-w) * 0.2245) at 50% calc(100% + var(--flower-w) * (var(--sun-t) - 0.05)));
+}
+.closing__tag-mask .closing__tag { color: var(--color-paper); }
+
+@media (prefers-reduced-motion: reduce) {
+  .closing, .closing.is-active { --sun-t: 0; animation: none; }
+}

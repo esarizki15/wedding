@@ -1,0 +1,7 @@
+.quote { align-content: end; gap: var(--space-4); color: var(--color-on-ink); padding-bottom: 3rem; }
+.quote__bg { position: absolute; inset: 0; z-index: -1; overflow: hidden; background: var(--color-ink); }
+.quote__bg img { width: 100%; height: 100%; object-fit: cover; opacity: .55; }
+.quote__bg::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, var(--color-ink-strong), transparent 70%); }
+.quote__title { font-family: var(--font-display); font-size: var(--fs-xl); font-weight: 700; }
+.quote__verse { font-size: var(--fs-md); line-height: 1.5; }
+.quote__cite { font-size: var(--fs-sm); font-weight: 700; color: var(--color-accent); }

@@ -1,0 +1,6 @@
+.gallery { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-4); }
+.gallery__item { aspect-ratio: 1; }
+.gallery__item:nth-child(3n + 1) { --tilt: -5deg; }
+.gallery__item:nth-child(3n + 2) { --tilt: 4deg; }
+.gallery__item:nth-child(3n)     { --tilt: -2deg; }
+.gallery__item img { width: 100%; height: 100%; object-fit: cover; }

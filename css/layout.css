@@ -1,0 +1,52 @@
+/* Frame selebar HP + scroll-snap per section. */
+.frame {
+  --frame-h: 100vh;
+  position: relative;
+  width: 100%;
+  height: var(--frame-h);
+  margin-inline: auto;
+  background: var(--color-paper);
+  overflow: hidden;
+}
+@supports (height: 100dvh) { .frame { --frame-h: 100dvh; } }
+@media (min-width: 30.0625rem) { .frame { max-width: var(--frame-max); } }
+
+.snap {
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  scroll-snap-type: y mandatory;
+  overscroll-behavior-y: contain;
+  overflow-anchor: none;
+  scrollbar-width: none;
+}
+.snap::-webkit-scrollbar { display: none; }
+
+.section {
+  position: relative;
+  z-index: var(--z-section);
+  min-height: var(--frame-h); /* min-height: section panjang otomatis memanjang */
+  padding: var(--space-12) var(--gutter);
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  overflow: hidden;
+  display: grid;
+  align-content: center;
+  gap: var(--space-6);
+}
+.section--tall { align-content: start; padding-bottom: max(4rem, 20svh); }
+/* Section "mengalir" (bukan grid) dengan overflow: clip, untuk bunga sticky yang ikut terbawa scroll. */
+.section--flow { display: block; overflow: hidden; overflow: clip; }
+.section--ink { background: var(--color-ink); color: var(--color-on-ink); }
+
+.music-toggle {
+  position: fixed;
+  z-index: var(--z-float);
+  right: max(1rem, calc(50% - var(--frame-max) / 2 + 1rem));
+  bottom: 1rem;
+  width: 3rem; height: 3rem;
+  border: var(--border); border-radius: 50%;
+  background: var(--color-accent); color: var(--color-ink-strong);
+  font-size: 1.25rem; cursor: pointer;
+}
+.music-toggle.is-playing { animation: spin 4s linear infinite; }

@@ -1,0 +1,127 @@
+/* ==========================================================================
+   Sistem animasi
+   - Elemen [data-anim] diam di posisi awal sampai section-nya aktif.
+   - snap.js memberi .is-active ke section yang sedang tampil dan mencabutnya
+     saat ditinggal → elemen keluar cepat, lalu animasi masuk DIPUTAR ULANG
+     ketika section tampil lagi.
+   - Masuk: ditunda --delay (eksplisit) atau --i × --stagger. Keluar: langsung.
+   - Nama preset = arah datangnya elemen.
+   - Semua keadaan awal hanya berlaku bila JS aktif (html.js).
+   ========================================================================== */
+
+.js [data-anim] {
+  --i: 0;
+  transition-property: opacity, transform, clip-path;
+  transition-duration: var(--dur-exit);
+  transition-timing-function: var(--ease-snap);
+  transition-delay: 0ms;
+}
+
+/* --- Keadaan awal / keluar --------------------------------------------- */
+.js [data-anim="rise"]       { opacity: 0; transform: translateY(var(--rise, 1.5rem)); }
+.js [data-anim="from-left"]  { opacity: 0; transform: translateX(-3rem); }
+.js [data-anim="from-right"] { opacity: 0; transform: translateX(3rem); }
+.js [data-anim="stamp"]      { opacity: 0; transform: scale(1.35) rotate(var(--stamp-rotate, -4deg)); }
+.js [data-anim="bloom"]      { opacity: 0; transform: scale(.2) rotate(-180deg); }
+.js [data-anim="stick"]      { opacity: 0; transform: scale(1.2) rotate(var(--tilt, -5deg)); }
+.js [data-anim="wipe"]            { clip-path: inset(0 100% 0 0); }
+.js [data-anim="wipe-from-right"] { clip-path: inset(0 0 0 100%); }
+.js [data-anim="curtain"]         { clip-path: inset(0 0 100% 0); }
+.js [data-anim="zoom-out"]        { transform: scale(1.15); }
+.js [data-anim="pop-shake"]       { opacity: 0; transform: scale(.4); }
+
+/* --- Keadaan masuk ------------------------------------------------------ */
+.js .is-active [data-anim] {
+  opacity: 1;
+  transform: none;
+  clip-path: inset(0 0 0 0);
+  transition-duration: var(--dur, var(--dur-enter));
+  transition-timing-function: var(--ease, var(--ease-snap));
+  transition-delay: var(--delay, calc(var(--i) * var(--stagger)));
+}
+.js .is-active [data-anim="stamp"] { transform: rotate(var(--stamp-rotate, -4deg)); transition-timing-function: var(--ease-overshoot); }
+.js .is-active [data-anim="bloom"],
+.js .is-active [data-anim="stick"] { transition-timing-function: var(--ease-overshoot); }
+
+/* Pop + shake: membesar melewati ukuran akhir, bergetar, lalu mengecil. */
+.js .is-active [data-anim="pop-shake"] { animation: pop-shake var(--pop-dur, 1300ms) var(--delay, 0ms) both; }
+@keyframes pop-shake {
+  0%   { opacity: 0; transform: scale(.4); color: var(--pop-color, currentColor); animation-timing-function: var(--ease-overshoot); }
+  35%  { opacity: 1; transform: scale(var(--pop-scale, 1.18)); color: var(--pop-color, currentColor); animation-timing-function: linear; }
+  41%  { transform: scale(var(--pop-scale, 1.18)) translateX(-.06em) rotate(-2deg); }
+  47%  { transform: scale(var(--pop-scale, 1.18)) translateX(.06em) rotate(2deg); }
+  53%  { transform: scale(var(--pop-scale, 1.18)) translateX(-.05em) rotate(-1.5deg); }
+  59%  { transform: scale(var(--pop-scale, 1.18)) translateX(.05em) rotate(1.5deg); }
+  65%  { transform: scale(var(--pop-scale, 1.18)) translateX(-.03em) rotate(-1deg); }
+  71%  { transform: scale(var(--pop-scale, 1.18)); color: var(--pop-color, currentColor); animation-timing-function: var(--ease-snap); }
+  100% { opacity: 1; transform: none; }
+}
+
+/* Putaran pelan tanpa henti; dijeda saat section tidak aktif. */
+[data-spin] { animation: spin var(--spin-duration, 40s) linear var(--spin-delay, var(--dur-enter)) infinite; animation-play-state: paused; }
+.is-active [data-spin] { animation-play-state: running; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ==========================================================================
+   Teks yang dipecah (split-letters.js / split-lines.js)
+   ========================================================================== */
+.js [data-split]:not([data-split-ready]) { visibility: hidden; }
+
+.split__word { display: inline-block; white-space: nowrap; }
+.split__char {
+  display: inline-block;
+  opacity: 0;
+  transition-property: opacity, transform;
+  transition-duration: var(--dur-exit);
+  transition-timing-function: var(--ease-snap);
+}
+
+/* letters: tiap huruf naik. Total durasi tetap (--split-window) berapa pun panjang teks. */
+[data-split="letters"] { --split-window: 600ms; --split-char-dur: 400ms; }
+[data-split="letters"] .split__char { transform: translateY(.4em); }
+.is-active [data-split="letters"] .split__char {
+  opacity: 1; transform: none;
+  transition-duration: var(--split-char-dur);
+  transition-delay: calc(var(--delay, 0ms) + var(--char-i) * var(--split-window) / max(var(--char-count) - 1, 1));
+}
+
+/* lines: baris demi baris */
+.split__line {
+  display: block; white-space: nowrap;
+  opacity: 0; transform: translateY(.75em);
+  transition-property: opacity, transform;
+  transition-duration: var(--dur-exit);
+  transition-timing-function: var(--ease-snap);
+}
+.is-active .split__line {
+  opacity: 1; transform: none;
+  transition-duration: var(--dur-enter);
+  transition-delay: calc(var(--delay, 0ms) + var(--line-i) * var(--line-stagger, 120ms));
+}
+
+/* type: mesin ketik + kursor yang kedip 2x lalu hilang */
+[data-split="type"] { --type-duration: 600ms; --type-step: calc(var(--type-duration) / var(--char-count, 1)); }
+[data-split="type"] .split__char { position: relative; }
+[data-split="type"] .split__char::after {
+  content: ""; position: absolute; top: .14em; bottom: .06em; left: calc(100% + .04em);
+  width: .08em; background: currentColor; opacity: 0;
+}
+.is-active [data-split="type"] .split__char {
+  --char-delay: calc(var(--delay, 0ms) + var(--char-i) * var(--type-step));
+  opacity: 1;
+  transition-duration: 1ms; /* bukan 0s: transisi 0s tidak selalu memicu repaint di Chrome */
+  transition-delay: var(--char-delay);
+}
+.is-active [data-split="type"] .split__char::after { animation: type-caret var(--type-step) step-end var(--char-delay); }
+.is-active [data-split="type"] .split__char--last::after { animation: type-caret-end calc(var(--type-step) * 6) step-end var(--char-delay); }
+@keyframes type-caret { 0%, 100% { opacity: 1; } }
+@keyframes type-caret-end { 0% { opacity: 1; } 33% { opacity: 0; } 50% { opacity: 1; } 83%, 100% { opacity: 0; } }
+
+/* Hormati "kurangi gerakan". */
+@media (prefers-reduced-motion: reduce) {
+  .js [data-anim], .js .is-active [data-anim],
+  .split__char, .is-active .split__char, .split__line, .is-active .split__line {
+    transition-duration: 1ms !important; transition-delay: 0ms !important; transform: none !important;
+  }
+  [data-spin], .split__char::after, .js .is-active [data-anim="pop-shake"] { animation: none !important; }
+}
